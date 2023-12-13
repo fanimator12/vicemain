@@ -1,0 +1,66 @@
+*,
+html,
+body {
+    cursor: url(/cursor.png), auto;
+}
+
+html,
+body {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    background: #E6EFFD;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    /* To hide the scrollbar */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+#gradient-title {
+    font-family: "Amiko Regular";
+    background: linear-gradient(118.94deg, #023E8A 13.41%, #0096C7 63.92%, #90E0EF 112.36%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+#contained-button {
+    font-family: "Amiko Regular";
+    background: linear-gradient(118.94deg, #023E8A 13.41%, #0096C7 63.92%, #90E0EF 112.36%);
+}
+
+#outlined-button {
+    font-family: "Amiko Regular";
+    border: 1px linear-gradient(118.94deg, #023E8A 13.41%, #0096C7 63.92%, #90E0EF 112.36%);
+    color: linear-gradient(118.94deg, #023E8A 13.41%, #0096C7 63.92%, #90E0EF 112.36%);
+    background-color: transparent;
+}
+
+.divider {
+    display: flex;
+    justify-content: center;
+    display: inline-block;
+    position: relative;
+    height: 1px;
+    width: 100%;
+    border-radius: 10px;
+    background-color: linear-gradient(118.94deg, #023E8A 13.41%, #0096C7 63.92%, #90E0EF 112.36%);
+}

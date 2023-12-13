@@ -1,0 +1,41 @@
+@font-face {
+    font-family: "Arsenal Bold";
+    src: local("Arsenal-Bold"),
+        url(./fonts/Arsenal-Bold.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "Arsenal Regular";
+    src: local("Arsenal-Regular"),
+        url(./fonts/Arsenal-Regular.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "Arsenal Italic";
+    src: local("Arsenal-Italic"),
+        url(./fonts/Arsenal-Italic.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "Arsenal Bold Italic";
+    src: local("Arsenal-BoldItalic"),
+        url(./fonts/Arsenal-BoldItalic.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "Amiko Bold";
+    src: local("Amiko-Bold"),
+        url(./fonts/Amiko-Bold.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "Amiko Regular";
+    src: local("Amiko-Regular"),
+        url(./fonts/Amiko-Regular.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "Amiko SemiBold";
+    src: local("Amiko-SemiBold"),
+        url(./fonts/Amiko-SemiBold.ttf) format("truetype");
+}
