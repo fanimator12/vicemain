@@ -29,7 +29,7 @@ cd vicemain
 npm install
 
 # Run the application
-npm start
+npm run dev
 ```
 
 ### Backend
