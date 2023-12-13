@@ -11,7 +11,8 @@ Welcome to ViceMain, a sophisticated Building Maintenance Management System. Our
 
 ## Architecture
 Dive into our system's architecture for a deeper understanding of its robust and scalable design.
-![architecture](https://github.com/fanimator12/vicemain/assets/56829184/f4003e36-d455-483c-b6c1-2d61ce0b042e)
+![architecture](https://github.com/fanimator12/vicemain/assets/56829184/cd1222f4-1321-4303-ae7a-745135d93fa9)
+
 
 ## Installation
 Instructions on how to install and run the project locally.
