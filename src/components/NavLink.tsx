@@ -15,7 +15,7 @@ const NavLink = ({ url, title }: NavLinkProps) => {
     <>
       <ListItem key={title} disablePadding sx={{ width: "auto" }}>
         <ListItemButton>
-          <a href={url} style={{ color: "#fff" }}>
+          <a href={url} style={{ color: "#fff", textDecoration: "none" }}>
             <ListItemText
               primary={
                 <Typography

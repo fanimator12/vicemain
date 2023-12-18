@@ -1,134 +1,95 @@
-import { Grid, Typography, Divider } from "@mui/material";
+import {
+  Grid,
+  Typography,
+  Divider,
+  Button,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import YouTubeIcon from "@mui/icons-material/YouTube";
+import { getMenuItems } from "../dummydata/menu";
+import NavLink from "./NavLink";
 
 const Footer = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+
+  const button = {
+    transition: "none",
+    color: "#0085FF",
+    "& .MuiTypography-root": {
+      textTransform: "capitalzie",
+      fontFamily: "Amiko SemiBold",
+    },
+    "& .MuiListItemButton-root:hover": {
+      backgroundColor: "transparent",
+    },
+    "&:hover": {
+      backgroundColor: "transparent",
+    },
+  };
+
+  const menuItems = getMenuItems();
+
   return (
     <footer
       style={{
+        width: "100%",
+        height: "auto",
         maxWidth: "1200px",
-        textAlign: "center",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
+        margin: "auto",
       }}
     >
       <Grid
         container
+        display="flex"
+        flexDirection={isMobile ? "column" : "row"}
+        alignItems="center"
+        justifyContent="space-between"
         spacing={2}
-        style={{
-          padding: 50,
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
+        sx={{
+          padding: "5em 0 2em 0",
         }}
       >
-        <Grid
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          <Typography
-            variant="body1"
-            gutterBottom
-            sx={{
-              color: "#0085FF",
-              fontFamily: "Amiko Regular",
-              fontSize: "15px",
-            }}
-          >
-            VICEMAIN
-          </Typography>
-        </Grid>
+        <Button sx={button}>VICEMAIN</Button>
 
-        <Grid
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "center",
-            gap: 20,
-          }}
-        >
-          <Typography
-            variant="body2"
-            gutterBottom
-            sx={{
-              color: "#0085FF",
-              fontFamily: "Amiko Regular",
-              fontSize: "15px",
-            }}
-          >
-            Home{" "}
-          </Typography>
-          <Typography
-            variant="body2"
-            gutterBottom
-            sx={{
-              color: "#0085FF",
-              fontFamily: "Amiko Regular",
-              fontSize: "15px",
-            }}
-          >
-            {" "}
-            About Us
-          </Typography>{" "}
-          <Typography
-            variant="body2"
-            gutterBottom
-            sx={{
-              color: "#0085FF",
-              fontFamily: "Amiko Regular",
-              fontSize: "15px",
-            }}
-          >
-            Services
-          </Typography>{" "}
-          <Typography
-            variant="body2"
-            gutterBottom
-            sx={{
-              color: "#0085FF",
-              fontFamily: "Amiko Regular",
-              fontSize: "15px",
-            }}
-          >
-            Contact Us
-          </Typography>
-        </Grid>
+        {menuItems.map((item, index) => (
+          <Button sx={button} key={index}>
+            <NavLink title={item.title} url={item.url} />
+          </Button>
+        ))}
 
-        <Grid
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "flex-end",
-            alignItems: "center",
-          }}
-        >
-          <FacebookIcon style={{ marginRight: "10px", color: "#0085FF" }} />
-          <InstagramIcon style={{ marginRight: "10px", color: "#0085FF" }} />
-          <YouTubeIcon style={{ color: "#0085FF" }} />
-        </Grid>
+        <FacebookIcon style={{ color: "#0085FF" }} />
+        <InstagramIcon style={{ color: "#0085FF" }} />
+        <YouTubeIcon style={{ color: "#0085FF" }} />
       </Grid>
 
-      <Divider className="divider" />
+      <Divider
+        className="divider"
+        style={{ width: "100%", marginTop: "1em" }}
+      />
 
-      <Typography
-        variant="caption"
-        style={{
-          color: "#0085FF",
-          fontFamily: "Amiko Regular",
-          fontSize: "12px",
+      <Grid
+        container
+        justifyContent="center"
+        sx={{
+          padding: "1em 0 1em 0",
         }}
       >
-        Copyright © VICEMAIN
-      </Typography>
+        <Typography
+          variant="caption"
+          style={{
+            color: "#0085FF",
+            fontFamily: "Amiko SemiBold",
+            opacity: 0.5,
+            fontSize: isMobile ? "10px" : "12px",
+          }}
+        >
+          Copyright © VICEMAIN
+        </Typography>
+      </Grid>
     </footer>
   );
 };

@@ -1,4 +1,3 @@
-import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 import {
   Button,
   Card,
@@ -9,6 +8,7 @@ import {
   TextField,
   useMediaQuery,
   useTheme,
+  InputAdornment,
 } from "@mui/material";
 
 import FeatureCard from "../components/FeatureCard";
@@ -24,28 +24,27 @@ import Footer from "../components/Footer";
 
 const LandingPage = () => {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+
+  const containerStyles = {
+    width: "100%",
+    maxWidth: "1200px",
+    margin: isMobile ? "0 auto" : "0 auto",
+    padding: isMobile ? theme.spacing(2) : theme.spacing(5),
+    display: "flex",
+    justifyContent: "center",
+  };
 
   return (
-    <Parallax pages={isMobile ? 4 : 3}>
-      <ParallaxLayer
-        offset={0}
-        speed={0.5}
-        style={{
-          marginTop: isMobile ? "-4em" : "-8em",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
+    <>
+      <Grid
+        container
+        direction="column"
+        spacing={isMobile ? 1 : 3}
+        sx={{ width: "100%", margin: "auto", p: 1 }}
       >
-        <Grid
-          container
-          spacing={isMobile ? 1 : 3}
-          style={{
-            width: "100%",
-            maxWidth: "1200px",
-          }}
-        >
+        {/* Section 1: Introduction */}
+        <Grid item container style={{ ...containerStyles, marginTop: "10em" }}>
           <Grid
             item
             sm={12}
@@ -54,10 +53,11 @@ const LandingPage = () => {
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
-              gap: isMobile ? 20 : 50,
+              gap: isMobile ? 30 : 50,
+              padding: isMobile ? theme.spacing(2) : theme.spacing(5),
             }}
           >
-            <Grid container spacing={isMobile ? 1 : 2}>
+            <Grid container spacing={2}>
               <Typography
                 variant="h2"
                 gutterBottom
@@ -95,7 +95,7 @@ const LandingPage = () => {
               spacing={2}
               sx={{
                 display: "flex",
-                justifyContent: "flex-start",
+                justifyContent: isMobile ? "center" : "flex-start",
                 alignItems: "center",
                 gap: 2,
               }}
@@ -130,7 +130,15 @@ const LandingPage = () => {
               </Button>
             </Grid>
           </Grid>
-          <Grid item xs={12} md={6} sx={{ marginTop: isMobile ? "2em" : 0 }}>
+          <Grid
+            item
+            xs={12}
+            md={6}
+            sx={{
+              marginTop: isMobile ? "2em" : 0,
+              padding: isMobile ? theme.spacing(2) : theme.spacing(5),
+            }}
+          >
             {[1, 2, 3, 4].map((num) => (
               <Card
                 key={num}
@@ -144,36 +152,17 @@ const LandingPage = () => {
             ))}
           </Grid>
         </Grid>
-      </ParallaxLayer>
 
-      <ParallaxLayer
-        offset={isMobile ? 0.3 : 0.1}
-        speed={0.5}
-        style={{
-          marginTop: isMobile ? "8em" : 0,
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Grid
-          container
-          style={{
-            maxWidth: "1200px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
+        {/* Section 2: Companies */}
+        <Grid item container style={containerStyles}>
           {companies.map((company, index) => (
             <Grid
               item
-              xs={12}
               sm={8}
               md={4}
               style={{
                 display: "flex",
+                flexDirection: "row",
                 justifyContent: "center",
                 width: "100%",
                 height: "100%",
@@ -198,27 +187,18 @@ const LandingPage = () => {
             </Grid>
           ))}
         </Grid>
-      </ParallaxLayer>
 
-      <ParallaxLayer
-        offset={isMobile ? 0.9 : 0.6}
-        speed={0.5}
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <div style={{ maxWidth: "1200px", textAlign: "center" }}>
+        {/* Section 3: What We Offer */}
+        <Grid item container style={containerStyles}>
           <Typography
             id="gradient-title"
-            sx={{ fontSize: isMobile ? 30 : 50 }}
+            sx={{ fontSize: isMobile ? 40 : 50 }}
             variant="h4"
             gutterBottom
           >
             What We Offer?
           </Typography>
-          <Typography variant="body1" gutterBottom>
+          <Typography variant="body1" gutterBottom sx={{ textAlign: "center" }}>
             a sophisticated Building Maintenance Management System <br /> Our
             system is expertly crafted to revolutionize the management and
             maintenance of buildings and construction projects.
@@ -235,19 +215,10 @@ const LandingPage = () => {
               </Grid>
             ))}
           </Grid>
-        </div>
-      </ParallaxLayer>
+        </Grid>
 
-      <ParallaxLayer
-        offset={isMobile ? 2 : 1}
-        speed={0.5}
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <div style={{ maxWidth: "1200px", textAlign: "center" }}>
+        {/* Section 4: How It Works */}
+        <Grid item container style={containerStyles}>
           <Typography
             id="gradient-title"
             sx={{ fontSize: isMobile ? 30 : 50 }}
@@ -256,7 +227,7 @@ const LandingPage = () => {
           >
             How It Works?
           </Typography>
-          <Typography variant="body1" gutterBottom>
+          <Typography variant="body1" gutterBottom sx={{ textAlign: "center" }}>
             Upload your building or construction site PDFs. Our intelligent
             system extracts key details to create a detailed maintenance plan.
             This plan is then integrated into a custom calendar, keeping you on
@@ -270,19 +241,10 @@ const LandingPage = () => {
               </Grid>
             ))}
           </Grid>
-        </div>
-      </ParallaxLayer>
+        </Grid>
 
-      <ParallaxLayer
-        offset={isMobile ? 2.5 : 1.5}
-        speed={0.5}
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <div style={{ maxWidth: "1200px", textAlign: "center" }}>
+        {/* Section 5: Our Plans */}
+        <Grid item container style={containerStyles}>
           <Typography
             id="gradient-title"
             sx={{ fontSize: isMobile ? 30 : 50 }}
@@ -307,28 +269,19 @@ const LandingPage = () => {
               </Grid>
             ))}
           </Grid>
-        </div>
-      </ParallaxLayer>
+        </Grid>
 
-      <ParallaxLayer
-        offset={isMobile ? 2.9 : 1.9}
-        speed={0.5}
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <div style={{ maxWidth: "1200px", textAlign: "center" }}>
+        {/* Section 6: Testimonials */}
+        <Grid item container style={containerStyles}>
           <Typography
             id="gradient-title"
-            sx={{ fontSize: isMobile ? 30 : 50 }}
+            sx={{ fontSize: isMobile ? 40 : 50 }}
             variant="h4"
             gutterBottom
           >
             What Our Clients Say About Us
           </Typography>
-          <Typography variant="body1" gutterBottom>
+          <Typography variant="body1" gutterBottom sx={{ textAlign: "center" }}>
             Community development is often linked with community work or
             community planning, and may involve stakeholders, foundations.
           </Typography>
@@ -346,58 +299,111 @@ const LandingPage = () => {
               </Grid>
             ))}
           </Grid>
-        </div>
-      </ParallaxLayer>
-
-      <ParallaxLayer
-        offset={isMobile ? 3.2 : 2.2}
-        speed={0.5}
-        style={{
-          backgroundColor: "#001D3D",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <div>
+        </Grid>
+      </Grid>
+      {/* Section 7: Social Media and Footer */}
+      <div style={{ backgroundColor: "#001D3D" }}>
+        <Grid item container style={containerStyles}>
           <Grid
             container
-            spacing={2}
+            spacing={1}
             style={{
               maxWidth: "1200px",
               textAlign: "center",
               display: "flex",
-              flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
+              marginTop: "6em",
             }}
           >
             <Typography
               id="gradient-title"
-              sx={{ fontSize: isMobile ? 30 : 50 }}
+              sx={{ fontSize: isMobile ? 40 : 50 }}
               variant="h4"
               gutterBottom
             >
               Social Media Its Ways Of Our Excellence.
             </Typography>
 
-            <Grid item>
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={4}
+              component="form"
+              noValidate
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+              style={{
+                textAlign: "center",
+              }}
+            >
               <TextField
+                sx={{
+                  "& .MuiInputBase-root": {
+                    color: "#000",
+                    background: "#E6EFFD",
+                    borderRadius: "10px",
+                    p: 1,
+                  },
+                  "& .MuiInputLabel-root": {
+                    color: "#000",
+                    opacity: "50%",
+                    p: 1,
+                  },
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "#fff",
+                    borderRadius: "10px",
+                    opacity: "20%",
+                  },
+                  "& .Mui:focused": {
+                    borderColor: "#000",
+                  },
+                  "& .Mui:hover": {
+                    borderColor: "#fff",
+                  },
+                  "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
+                    {
+                      borderColor: "#fff",
+                    },
+                  marginRight: "10px",
+                  width: "100%",
+                }}
                 label="Enter your Email"
                 variant="outlined"
-                style={{ marginRight: "10px", color: "#0085FF" }}
+                margin="normal"
+                fullWidth
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <Button
+                        id="contained-button"
+                        variant="contained"
+                        sx={{
+                          width: "auto",
+                          textTransform: "capitalize",
+                          fontSize: "15px",
+                          backgroundColor: "#0085FF",
+                          p: 2,
+                          borderRadius: "10px",
+                        }}
+                      >
+                        Get Started
+                      </Button>
+                    </InputAdornment>
+                  ),
+                }}
               />
-              <Button id="contained-button" variant="contained">
-                Get Started
-              </Button>
             </Grid>
-          </Grid>
-          <Divider className="divider" />
 
-          <Footer />
-        </div>
-      </ParallaxLayer>
-    </Parallax>
+            <Divider className="divider" />
+          </Grid>
+        </Grid>
+
+        <Footer />
+      </div>
+    </>
   );
 };
 
