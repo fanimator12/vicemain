@@ -7,6 +7,8 @@ import {
   Grid,
   Divider,
   TextField,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 
 import FeatureCard from "../components/FeatureCard";
@@ -21,31 +23,41 @@ import testimonials from "../dummydata/testimonials";
 import Footer from "../components/Footer";
 
 const LandingPage = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
   return (
-    <Parallax pages={3}>
+    <Parallax pages={isMobile ? 4 : 3}>
       <ParallaxLayer
         offset={0}
         speed={0.5}
         style={{
-          marginTop: "-8em",
+          marginTop: isMobile ? "-4em" : "-8em",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
         }}
       >
-        <Grid container spacing={3} style={{ maxWidth: "1200px" }}>
+        <Grid
+          container
+          spacing={isMobile ? 1 : 3}
+          style={{
+            width: "100%",
+            maxWidth: "1200px",
+          }}
+        >
           <Grid
             item
-            xs={12}
+            sm={12}
             md={6}
             style={{
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
-              gap: 50,
+              gap: isMobile ? 20 : 50,
             }}
           >
-            <Grid container spacing={2}>
+            <Grid container spacing={isMobile ? 1 : 2}>
               <Typography
                 variant="h2"
                 gutterBottom
@@ -84,8 +96,8 @@ const LandingPage = () => {
               sx={{
                 display: "flex",
                 justifyContent: "flex-start",
-                gap: 2,
                 alignItems: "center",
+                gap: 2,
               }}
             >
               <Button
@@ -118,9 +130,12 @@ const LandingPage = () => {
               </Button>
             </Grid>
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={6} sx={{ marginTop: isMobile ? "2em" : 0 }}>
             {[1, 2, 3, 4].map((num) => (
-              <Card key={num} style={{ marginBottom: "10px" }}>
+              <Card
+                key={num}
+                style={{ marginBottom: isMobile ? "5px" : "10px" }}
+              >
                 <CardContent>
                   <Typography variant="h5">Card Title {num}</Typography>
                   <Typography variant="body2">Card description...</Typography>
@@ -132,10 +147,10 @@ const LandingPage = () => {
       </ParallaxLayer>
 
       <ParallaxLayer
-        offset={0.1}
+        offset={isMobile ? 0.3 : 0.1}
         speed={0.5}
         style={{
-          marginTop: "5em",
+          marginTop: isMobile ? "8em" : 0,
           display: "flex",
           flexDirection: "row",
           justifyContent: "center",
@@ -186,7 +201,7 @@ const LandingPage = () => {
       </ParallaxLayer>
 
       <ParallaxLayer
-        offset={0.6}
+        offset={isMobile ? 0.9 : 0.6}
         speed={0.5}
         style={{
           display: "flex",
@@ -197,7 +212,7 @@ const LandingPage = () => {
         <div style={{ maxWidth: "1200px", textAlign: "center" }}>
           <Typography
             id="gradient-title"
-            sx={{ fontSize: 50 }}
+            sx={{ fontSize: isMobile ? 30 : 50 }}
             variant="h4"
             gutterBottom
           >
@@ -224,7 +239,7 @@ const LandingPage = () => {
       </ParallaxLayer>
 
       <ParallaxLayer
-        offset={1}
+        offset={isMobile ? 2 : 1}
         speed={0.5}
         style={{
           display: "flex",
@@ -235,7 +250,7 @@ const LandingPage = () => {
         <div style={{ maxWidth: "1200px", textAlign: "center" }}>
           <Typography
             id="gradient-title"
-            sx={{ fontSize: 50 }}
+            sx={{ fontSize: isMobile ? 30 : 50 }}
             variant="h4"
             gutterBottom
           >
@@ -259,7 +274,7 @@ const LandingPage = () => {
       </ParallaxLayer>
 
       <ParallaxLayer
-        offset={1.5}
+        offset={isMobile ? 2.5 : 1.5}
         speed={0.5}
         style={{
           display: "flex",
@@ -270,7 +285,7 @@ const LandingPage = () => {
         <div style={{ maxWidth: "1200px", textAlign: "center" }}>
           <Typography
             id="gradient-title"
-            sx={{ fontSize: 50 }}
+            sx={{ fontSize: isMobile ? 30 : 50 }}
             variant="h4"
             gutterBottom
           >
@@ -296,7 +311,7 @@ const LandingPage = () => {
       </ParallaxLayer>
 
       <ParallaxLayer
-        offset={1.9}
+        offset={isMobile ? 2.9 : 1.9}
         speed={0.5}
         style={{
           display: "flex",
@@ -307,7 +322,7 @@ const LandingPage = () => {
         <div style={{ maxWidth: "1200px", textAlign: "center" }}>
           <Typography
             id="gradient-title"
-            sx={{ fontSize: 50 }}
+            sx={{ fontSize: isMobile ? 30 : 50 }}
             variant="h4"
             gutterBottom
           >
@@ -335,7 +350,7 @@ const LandingPage = () => {
       </ParallaxLayer>
 
       <ParallaxLayer
-        offset={2.2}
+        offset={isMobile ? 3.2 : 2.2}
         speed={0.5}
         style={{
           backgroundColor: "#001D3D",
@@ -359,14 +374,14 @@ const LandingPage = () => {
           >
             <Typography
               id="gradient-title"
-              sx={{ fontSize: 50 }}
+              sx={{ fontSize: isMobile ? 30 : 50 }}
               variant="h4"
               gutterBottom
             >
               Social Media Its Ways Of Our Excellence.
             </Typography>
 
-            <Grid item spacing={2}>
+            <Grid item>
               <TextField
                 label="Enter your Email"
                 variant="outlined"

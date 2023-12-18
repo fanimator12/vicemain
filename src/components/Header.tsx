@@ -1,44 +1,54 @@
-import { AppBar, Toolbar, Button, Grid, Link } from "@mui/material";
+import {
+  AppBar,
+  Toolbar,
+  Button,
+  Grid,
+  Link,
+  IconButton,
+  Box,
+} from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import NavDrawer from "./NavDrawer";
+import NavLink from "./NavLink";
+import { getMenuItems } from "../dummydata/menu";
 
-const Header = () => {
-  const appBar = {
-    backgroundColor: "#fff",
-    color: "#000",
-    boxShadow: "none",
-  };
+interface HeaderProps {
+  handleDrawerToggle: () => void;
+  mobileOpen: boolean;
+}
 
-  const toolbar = {
-    display: "flex",
-    justifyContent: "space-between",
-    width: "100%",
-    maxWidth: "1200px",
-    margin: "auto",
-  };
-
-  const navLinks = {
-    display: "flex",
-    gap: 15,
-    width: "auto",
-    justifyContent: "space-between",
-  };
-
-  const user = {
-    display: "flex",
-    width: "20%",
-    gap: 15,
-    justifyContent: "flex-end",
-  };
-
+const Header = ({ handleDrawerToggle, mobileOpen }: HeaderProps) => {
   const button = {
-    color: "#023E8A",
-    fontFamily: "Amiko SemiBold",
-    textTransform: "capitalize",
-    fontSize: "15px",
+    transition: "none",
+    color: "transparent",
+    "& .MuiTypography-root": {
+      textTransform: "capitalzie",
+      fontFamily: "Amiko SemiBold",
+    },
+    "& .MuiListItemButton-root:hover": {
+      backgroundColor: "transparent",
+    },
+    "&:hover": {
+      backgroundColor: "transparent",
+    },
   };
+
+  const menuItems = getMenuItems();
 
   return (
-    <AppBar position="sticky" sx={appBar}>
-      <Toolbar sx={toolbar}>
+    <AppBar
+      position="sticky"
+      sx={{ backgroundColor: "#fff", color: "#000", boxShadow: "none" }}
+    >
+      <Toolbar
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          maxWidth: "1200px",
+          width: "90%",
+          margin: "0 auto",
+        }}
+      >
         <Grid
           container
           display="flex"
@@ -64,14 +74,72 @@ const Header = () => {
             </Link>
           </Grid>
 
-          <Grid item style={navLinks}>
-            <Button sx={button}>Home</Button>
-            <Button sx={button}>About Us</Button>
-            <Button sx={button}>Services</Button>
-            <Button sx={button}>Contact Us</Button>
+          <Grid
+            item
+            display="flex"
+            alignItems="center"
+            justifyContent={{ sm: "flex-end", md: "center" }}
+          >
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="start"
+              onClick={handleDrawerToggle}
+              sx={{
+                display: { md: "none" },
+                float: "right",
+              }}
+            >
+              <MenuIcon sx={{ color: "#023E8A" }} />
+            </IconButton>
+            {mobileOpen ? (
+              <NavDrawer
+                handleDrawerToggle={handleDrawerToggle}
+                mobileOpen={mobileOpen}
+              />
+            ) : (
+              ""
+            )}
+
+            <Grid
+              item
+              sx={{
+                display: { xs: "none", sm: "none", md: "flex" },
+                width: "auto",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Box
+                sx={{
+                  display: { xs: "none", sm: "none", md: "flex" },
+                  marginLeft: "10px",
+                  width: "auto",
+                }}
+              >
+                <Button sx={button}>
+                  {menuItems.map((item: { title: string; url: string }) => (
+                    <NavLink
+                      key={item.title}
+                      title={item.title}
+                      url={item.url}
+                    />
+                  ))}
+                </Button>
+              </Box>
+            </Grid>
           </Grid>
 
-          <Grid item style={user}>
+          <Grid
+            item
+            sx={{
+              display: { xs: "none", sm: "none", md: "flex" },
+              width: "auto",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: 1
+            }}
+          >
             <Button
               id="outlined-button"
               variant="outlined"
